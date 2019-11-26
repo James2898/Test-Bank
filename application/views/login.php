@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div class="wrapper">
-		<form class="form-signin">
+		<form class="form-signin" method="POST" action="Login/login">
 			<h2 class="form-signin-heading text-center">AMA Test Bank</h2>
-			<div class="">
+			<div>
 				<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
 			</div>
 			<div>

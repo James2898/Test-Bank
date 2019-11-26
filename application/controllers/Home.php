@@ -11,6 +11,10 @@ class Home extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->view('home');
+        if(!isset($_SESSION['authorization'])){
+            $this->load->view('home');
+        }else{
+            redirect(base_url(),'refresh');
+        }
 	}
 }
