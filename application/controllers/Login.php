@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+session_start();
 class Login extends CI_Controller {
 	function __construct(){
         // this is your constructor
@@ -14,8 +14,9 @@ class Login extends CI_Controller {
     }
 
 	public function index(){
-		if(!isset($_SESSION['authorization'])){
+		if(isset($_SESSION['authorization'])){
 			redirect(base_url().'index.php/home', 'refresh');
+			exit();
 		}
 		$this->load->view('login');
 	}
@@ -27,7 +28,7 @@ class Login extends CI_Controller {
 		);
 		$result = $this->Login_Model->login($data);
 		if($result == FALSE){
-			redirect(base_url().'index.php/login?result=error');
+			// redirect(base_url().'index.php/login?result=error');
 		}else{
 			$_SESSION['authorization'] 	= $result['authorization'];
 			$_SESSION['first_name'] 	= $result['first_name'];

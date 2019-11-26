@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<form class="form-signin" method="POST" action="Login/login">
+		<form class="form-signin" method="POST" action="<?php echo base_url() ?>index.php/Login/login">
 			<h2 class="form-signin-heading text-center">AMA Test Bank</h2>
 			<div>
 				<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
