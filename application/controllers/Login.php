@@ -8,9 +8,8 @@ class Login extends CI_Controller {
     	$this->load->model('Login_Model');
     	$this->load->database();
     	$this->load->library('form_validation');
-    	$this->load->helper('form');
-        $this->load->helper('form');
-        $this->load->helper('url');
+    	$this->load->helper('form');;
+		$this->load->helper('url');
     }
 
 	public function index(){
@@ -28,7 +27,7 @@ class Login extends CI_Controller {
 		);
 		$result = $this->Login_Model->login($data);
 		if($result == FALSE){
-			// redirect(base_url().'index.php/login?result=error');
+			redirect(base_url().'index.php/login?result=error');
 		}else{
 			$_SESSION['authorization'] 	= $result['authorization'];
 			$_SESSION['first_name'] 	= $result['first_name'];

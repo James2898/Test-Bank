@@ -10,23 +10,52 @@
 	<div class="panel panel-default">
 	<div class="panel-body">
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="<?php echo base_url() ?>">Profile</a></li>
-		  <li><a href="<?php echo base_url() ?>index.php/faculty/members">Faculty Members</a></li>
-		  <li><a href="#">Faculty Activity</a></li>
+		  <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
+		  <li><a data-toggle="tab" href="#faculty">Faculty Members</a></li>
 		</ul>
-		<div class="container">
-			<form action="admin/update" method="POST">
-				<div class="form-row" style="margin: 10px 0px">
-					<div class="form-group col-md-4">
-				      <label for="first_name">First Name</label>
-				      <input type="text" class="form-control" id="first_name">
-				    </div>
-				    <div class="form-group col-md-4">
-				      <label for="last_name">Last Name</label>
-				      <input type="text" class="form-control" id="first_name">
-				    </div>
+		<div class="tab-content">
+			<!-- PROFILE TAB -->
+			<div id="profile" class="tab-pane fade in active">
+				<table class="table table-bordered">
+					<tr>
+						<th>Name</th>
+						<td><?php echo $user->row()->first_name ." ". $user->row()->last_name ?></td>
+					</tr>
+					<tr>
+						<th>Username</th>
+						<td><?php echo $user->row()->username ?></td>
+					</tr>
+					<tr>
+						<th>Authorization</th>
+						<td><?php echo ($user->row()->authorization == '1') ? 'Admin':'Faculty';?></td>
+					</tr>
+				</table>
+				<div>
+					<a href="#" class="btn btn-primary">Edit Info</a>
 				</div>
-			</form>
+			</div>
+			<!-- FACULTY LIST TAB -->
+			<div id="faculty" class="tab-pane fade in">
+				<div class>
+					<a href="#" class="btn btn-success">Add</a>
+				</div>
+				<table class="table table-bordered">
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+					</tr>
+					<?php foreach ($users as $row ) { ?>
+					<tr>
+						<td><?php echo $row['last_name'].", ".$row['first_name']; ?></td>
+						<td>
+							<a href="#" class="btn btn-primary">View</a>
+							<a href="#" class="btn btn-warning">Edit</a>
+							<a href="#" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+					<?php } ?>
+				</table>
+			</div>
 		</div>
 	</div>
 	</div>
