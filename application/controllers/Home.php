@@ -11,10 +11,11 @@ class Home extends CI_Controller {
     }
 
 	public function index(){
-        if(!isset($_SESSION['authorization'])){
-            $this->load->view('home');
-        }else{
-            redirect(base_url(),'refresh');
+
+        if(isset($_SESSION['authorization'])){
+            redirect(base_url().'index.php','refresh');
+            exit();
         }
+        $this->load->view('home');
 	}
 }
