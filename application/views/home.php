@@ -3,10 +3,19 @@
 <head>
 	<title>Home</title>
 	<?php include 'include_top.php' ?>
+	<script>
+		function confirmDelete(url) {
+			if(confirm('Are you sure to delete?')){
+				redirect(url);
+			}else{
+				return false;
+			}
+		}
+	</script>
 </head>
 <body>
 	<?php include 'header.php' ?>
-	<div class="container" style="margin-top: 5%;">
+	<div class="container" style="margin-top: 10%;">
 	<div class="panel panel-default">
 	<div class="panel-body">
 		<ul class="nav nav-tabs">
@@ -15,7 +24,7 @@
 		</ul>
 		<div class="tab-content">
 			<!-- PROFILE TAB -->
-			<div id="profile" class="tab-pane fade in ">
+			<div id="profile" class="tab-pane fade in active">
 				<table class="table table-bordered">
 					<tr>
 						<th>Name</th>
@@ -31,27 +40,35 @@
 					</tr>
 				</table>
 				<div>
-					<a href="#" class="btn btn-primary">Edit Info</a>
+					<a href="<?php echo base_url() ?>index.php/user/index/<?php echo $user->user_no ?>" class="btn btn-primary">Edit Info</a>
 				</div>
 			</div>
 			<!-- FACULTY LIST TAB -->
-			<div id="faculty" class="tab-pane fade in active">
+			<div id="faculty" class="tab-pane fade in">
 				<div class>
-					<a href="#" class="btn btn-success">Add</a>
+					<a href="<?php echo base_url() ?>index.php/user/index/" class="btn btn-success">Add</a>
 				</div>
 				<table class="table table-bordered">
 					<tr>
 						<th>Name</th>
+						<th>Authorization</th>
 						<th>Action</th>
 					</tr>
-					<?php foreach ($users as $row ) { ?>
+					<?php
+						if(!empty($users)) {
+						foreach ($users as $row ) { ?>
 					<tr>
 						<td><?php echo $row['last_name'].", ".$row['first_name']; ?></td>
+						<td><?php echo ($row['authorization'] == '1') ? 'Admin' : 'Faculty'; ?>
 						<td>
 							<a href="<?php echo base_url() ?>index.php/faculty/index/<?php echo $row['user_no'] ?>" class="btn btn-primary">View</a>
-							<a href="#" class="btn btn-warning">Edit</a>
-							<a href="#" class="btn btn-danger">Delete</a>
+							<a href="<?php echo base_url() ?>index.php/user/index/<?php echo $row['user_no']?>" class="btn btn-warning">Edit</a>
+							<a onclick="confirmDelet(<?php echo base_url() ?>index.php/user/delete/<?php echo $row['user_no']?>)"  class="btn btn-danger">Delete</a>
 						</td>
+					</tr>
+					<?php }}else{ ?>
+					<tr>
+						<td colspan="2" class="text-center">No Faculty Member</td>
 					</tr>
 					<?php } ?>
 				</table>
