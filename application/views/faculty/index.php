@@ -6,7 +6,7 @@
 </head>
 <body>
 	<?php include APPPATH.'views/header.php' ?>
-	<div class="container" style="margin-top: 5%;">
+	<div class="container" style="margin-top: 10%;">
 	<div class="panel panel-default">
 	<div class="panel-body">
 		<ul class="nav nav-tabs">
@@ -31,7 +31,7 @@
 					</tr>
 				</table>
 				<div>
-					<a href="<?php echo base_url()?>/faculty/detail/<?php echo $user->user_no ?>" class="btn btn-primary">Edit Info</a>
+					<a href="<?php echo base_url()?>index.php/user/index/<?php echo $user->user_no ?>" class="btn btn-primary">Edit Info</a>
 				</div>
 			</div>
 			<!-- FACULTY LIST TAB -->
@@ -44,7 +44,10 @@
 						<th>Subject Name</th>
 						<th>Action</th>
 					</tr>
-					<?php foreach ($subject as $row ) { ?>
+					<?php
+						if(!empty($subject)) {
+						foreach ($subject as $row ) {
+					?>
 					<tr>
 						<td><?php echo $row['subject_name'] ?></td>
 						<td>
@@ -52,7 +55,9 @@
 							<a href="#" class="btn btn-danger">Delete</a>
 						</td>
 					</tr>
-					<?php } ?>
+					<?php }}else{ ?>
+						<td colspan="2" class="text-center">No subjects assigned to this faculty</td>
+					<?php }?>
 				</table>
 			</div>
 		</div>
