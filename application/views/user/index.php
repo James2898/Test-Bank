@@ -64,7 +64,7 @@
 					<span class="col-md-1"></span>
 					<div class="col-md-4">
 						Username
-						<input id="idUsername" type="text"  class="form-control validate[required]" name="username" value="<?php if(!empty($user->first_name)) echo $user->first_name; ?>">
+						<input id="idUsername" type="text"  class="form-control validate[required]" name="username" value="<?php if(!empty($user->username)) echo $user->username; ?>">
 					</div>
 					<div class="col-md-4">
 					Authorization

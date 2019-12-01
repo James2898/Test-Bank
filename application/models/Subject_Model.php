@@ -59,10 +59,48 @@
 			}
         }
 
+        public function get_subject($subject_no){
+            $this->db->select('*');
+            $this->db->from('subject');
+            $this->db->where('subject_no',$subject_no);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1){
+                return $query->row();
+			}else{
+				return false;
+			}
+        }
+
         public function delete_user_subject($user_no,$subject_no) {
             $where = "user_no = {$user_no} AND subject_no = {$subject_no}";
             $this->db->where($where);
             $this->db->delete('faculty_subject');
+        }
+
+        public function create($data){
+            $this->db->insert('subject',$data);
+            return $this->db->insert_id();
+        }
+
+        public function update($data,$subject_no){
+            $this->db->where('subject_no',$subject_no);
+            $this->db->update('subject',$data);
+            return $subject_no;
+        }
+
+        public function delete($subject_no){
+            $this->db->select('*');
+            $this->db->from('faculty_subject');
+            $this->db->where('subject_no',$subject_no);
+            $query = $this->db->get();
+            if($query->num_rows() == 0){
+                $this->db->where('subject_no',$subject_no);
+                $this->db->delete('subject');
+                return true;
+            }else{
+                return false;
+            }
         }
 	}
 
