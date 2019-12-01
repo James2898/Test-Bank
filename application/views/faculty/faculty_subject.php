@@ -6,8 +6,9 @@
 </head>
 <body>
 	<?php include APPPATH.'views/header.php' ?>
-	<div class="container" style="margin-top: 10%;">
-	<div class="panel panel-default">
+	<div class="container" style="margin-top: 8%;">
+	<a href="<?php echo base_url() ?>index.php/faculty/detail/<?php echo $user->user_no; ?>" class="btn btn-primary" style="margin: 5px 0px;">Back</a>
+	<div class="panel panel-primary">
 	<div class="panel-heading text-center">
 		<h2>
 			<?php echo $user->first_name." ".$user->last_name ?> - Subjects
@@ -15,7 +16,11 @@
 	</div>
 	<div class="panel-body">
 	<form method="POST" action="<?php echo base_url(); ?>index.php/Faculty/add_subject/<?php echo $user->user_no ?>">
-	<table class="table table-bordered table-responsive">
+	<table class="table table-bordered table-responsive table-hover">
+		<tr>
+			<th class="text-center">Assigned</th>
+			<th class="text-center">Subject Name</th>
+		</tr>
 		<?php $n = 0; foreach ($subject as $row ){?>
 			<tr>
 				<td width="10%" class="text-center">

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
-	<?php include 'include_top.php' ?>
+	<title>Faculty</title>
+	<?php include APPPATH.'views/include_top.php' ?>
 </head>
 <body>
-	<?php include 'header.php' ?>
-	<div class="container" style="margin-top: 9%;">
+	<?php include APPPATH.'views/header.php' ?>
+	<div class="container" style="margin-top: 8%;">
+	<a href="<?php echo base_url() ?>index.php/faculty" class="btn btn-primary" style="margin: 5px 0px;">Back</a>
 	<div class="panel panel-primary">
 	<div class="panel-heading text-center">
 		<h2>
-			Home
+			Faculty Info
 		</h2>
 	</div>
 	<div class="panel-body">
 		<ul class="nav nav-tabs">
-		  <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-		  <li><a data-toggle="tab" href="#faculty">Subjects</a></li>
+		  <li class="active"><a data-toggle="tab" href="#profile">Faculty Profile</a></li>
+		  <li><a data-toggle="tab" href="#faculty">Faculty Subjects</a></li>
 		</ul>
 		<div class="tab-content">
 			<!-- PROFILE TAB -->

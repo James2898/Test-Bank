@@ -42,7 +42,6 @@ class User extends CI_Controller {
         }else{
             $result = $this->User_Model->create($data,$user_no);
         }
-        // print_r($result);
         $_SESSION['result'] = ($result) ? 'Success' : 'Error';
         redirect(base_url().'index.php/user/index/'.$result);
     }

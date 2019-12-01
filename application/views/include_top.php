@@ -11,7 +11,6 @@
 
 <script>
     function confirmDelete(url) {
-        alert(url);
         if(confirm('Are you sure to delete?')){
             window.location.href = url;
         }else{
@@ -20,7 +19,6 @@
     }
 
 <?php
-    // print_r($_SESSION);
     if(isset($_SESSION['result'])){
         echo "
             alert('{$_SESSION['result']}');
