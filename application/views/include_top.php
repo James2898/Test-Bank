@@ -10,6 +10,15 @@
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.validationEngine.js" charset="utf-8"></script>
 
 <script>
+    function confirmDelete(url) {
+        alert(url);
+        if(confirm('Are you sure to delete?')){
+            window.location.href = url;
+        }else{
+            return false;
+        }
+    }
+
 <?php
     // print_r($_SESSION);
     if(isset($_SESSION['result'])){
