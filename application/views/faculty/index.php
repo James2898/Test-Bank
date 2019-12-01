@@ -37,7 +37,7 @@
 			<!-- FACULTY LIST TAB -->
 			<div id="faculty" class="tab-pane fade in">
 				<div class>
-					<a href="#" class="btn btn-success">Add Subject</a>
+					<a href="<?php echo base_url() ?>index.php/faculty/faculty_subject/<?php echo $user->user_no ?>" class="btn btn-success">Add Subject</a>
 				</div>
 				<table class="table table-bordered">
 					<tr>
@@ -52,7 +52,7 @@
 						<td><?php echo $row['subject_name'] ?></td>
 						<td>
 							<a href="<?php echo base_url() ?>index.php/faculty/" class="btn btn-primary">View</a>
-							<a href="#" class="btn btn-danger">Delete</a>
+							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/faculty/delete_subject/<?php echo $user->user_no; ?>/<?php echo $row['subject_no'] ?>')"  class="btn btn-danger">Delete</a>
 						</td>
 					</tr>
 					<?php }}else{ ?>

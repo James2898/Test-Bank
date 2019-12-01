@@ -3,7 +3,7 @@
 <head>
 	<title>Home</title>
 	<?php include 'include_top.php' ?>
-	<script>
+	<!-- <script>
 		function confirmDelete(url) {
 			if(confirm('Are you sure to delete?')){
 				redirect(url);
@@ -11,7 +11,7 @@
 				return false;
 			}
 		}
-	</script>
+	</script> -->
 </head>
 <body>
 	<?php include 'header.php' ?>
@@ -63,7 +63,7 @@
 						<td>
 							<a href="<?php echo base_url() ?>index.php/faculty/index/<?php echo $row['user_no'] ?>" class="btn btn-primary">View</a>
 							<a href="<?php echo base_url() ?>index.php/user/index/<?php echo $row['user_no']?>" class="btn btn-warning">Edit</a>
-							<a onclick="confirmDelet(<?php echo base_url() ?>index.php/user/delete/<?php echo $row['user_no']?>)"  class="btn btn-danger">Delete</a>
+							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/user/delete/<?php echo $row['user_no']?>')"  class="btn btn-danger">Delete</a>
 						</td>
 					</tr>
 					<?php }}else{ ?>
