@@ -24,6 +24,6 @@ class Subject extends CI_Controller {
             'user'      =>  $user,
             'subject'   =>  $subject
         );
-        $this->load->view('faculty/index',$data);
+        $this->load->view('faculty/detail',$data);
 	}
 }

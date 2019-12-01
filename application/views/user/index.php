@@ -35,8 +35,9 @@
 </head>
 <body>
 	<?php include APPPATH.'views/header.php' ?>
-	<div class="container" style="margin-top: 10%;">
-	<div class="panel">
+	<div class="container" style="margin-top: 8%;">
+	<a href="<?php echo base_url() ?>index.php/faculty" class="btn btn-primary" style="margin: 5px 0px;">Back</a>
+	<div class="panel panel-primary">
 	<div class="panel-heading text-center">
 		<h2>
 			<?php echo empty($user) ? 'Create User' : 'Edit User'; ?>
@@ -86,7 +87,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-12 text-center">
-						<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+						<button type="submit" class="btn btn-success btn-lg">Submit</button>
 					</div>
 				</div>
 			</form>

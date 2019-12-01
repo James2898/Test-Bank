@@ -14,7 +14,20 @@ class Faculty extends CI_Controller {
         $this->load->helper('url');
     }
 
-	public function index($user_no){
+	public function index(){
+
+        if(!isset($_SESSION['authorization'])){
+            redirect(base_url().'index.php','refresh');
+            exit();
+        }
+        $users = $this->User_Model->get_all_faculty();
+        $data = array(
+            'users'      =>  $users,
+        );
+        $this->load->view('faculty/index',$data);
+    }
+
+    public function detail($user_no){
 
         if(!isset($_SESSION['authorization'])){
             redirect(base_url().'index.php','refresh');
@@ -26,7 +39,7 @@ class Faculty extends CI_Controller {
             'user'      =>  $user,
             'subject'   =>  $subject
         );
-        $this->load->view('faculty/index',$data);
+        $this->load->view('faculty/detail',$data);
     }
 
     public function faculty_subject($user_no){
@@ -37,8 +50,6 @@ class Faculty extends CI_Controller {
         $user           = $this->User_Model->get_user($user_no);
         $user_subject   = $this->Subject_Model->get_user_subject_no($user_no);
         $subject        = $this->Subject_Model->get_all_subjects();
-
-        print_r($user_subject);
 
         $data = array(
             'user'          => $user,
@@ -60,7 +71,7 @@ class Faculty extends CI_Controller {
         }
         $this->Subject_Model->add_user_subject($data,$user_no);
         $_SESSION['result'] = 'Success';
-        redirect(base_url().'index.php/faculty/index/'.$user_no,'refresh');
+        redirect(base_url().'index.php/faculty/detail/'.$user_no,'refresh');
     }
 
     public function delete_subject($user_no = '',$subject_no = ''){
@@ -70,6 +81,6 @@ class Faculty extends CI_Controller {
         }
         $this->Subject_Model->delete_user_subject($user_no+0,$subject_no+0);
         $_SESSION['result'] = 'Success';
-        redirect(base_url().'index.php/faculty/index/'.$user_no,'refresh');
+        redirect(base_url().'index.php/faculty/detail/'.$user_no,'refresh');
     }
 }
