@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Subject - <?php echo $subject_lesson->subject_name; ?></title>
+	<title> Lesson - <?php echo empty($lesson) ? 'Create Lesson' : 'Edit Lesson'; ?></title>
 	<?php include APPPATH.'views/include_top.php' ?>
+	<script>
+		$(document).ready(function(){
+			$("#idLessonForm").validationEngine();
+		});
+	</script>
 </head>
 <body>
 	<?php include APPPATH.'views/header.php' ?>
 	<div class="container" style="margin-top: 8%;">
-	<a href="<?php echo base_url() ?>index.php/subject" class="btn btn-primary" style="margin: 5px 0px;">Back</a>
+	<a href="<?php echo base_url() ?>index.php/lesson/index/<?php echo $subject_no; ?>" class="btn btn-primary" style="margin: 5px 0px;">Back</a>
 	<div class="panel panel-primary">
 	<div class="panel-heading text-center">
 		<h2>
-			<?php echo $subject_lesson->subject_name; ?>
+			<?php echo empty($lesson) ? 'Create Lesson' : 'Edit Lesson'; ?>
 		</h2>
 	</div>
 	<div class="panel-body">
-		<div class="tab-content">
-			<div id="faculty" class="tab-pane fade in">
-				<div style="margin: 5px 0;">
-					<a href="<?php echo base_url() ?>index.php/lesson/add/<?php echo $subject_lesson->subject_no ?>" class="btn btn-success">Add Lesson</a>
+	<div class="tab-content">
+	<div class="row">
+		<div class="col-md-12">
+			<form  id="idLessonForm" class="form-horizontal" method="POST" action="<?php echo base_url() ?>index.php/lesson/save/<?php echo $subject_no ?>" autocomplete="off" onsubmit="return validate();">
+				<input type="hidden" name="lesson_no" value="<?php if(!empty($lesson)) echo $lesson->lesson_no; ?>">
+				<div class="form-group">
+					<span class="col-md-1"></span>
+					<div class="col-md-4">
+						Lesson Name
+						<input id="idLessonName" type="text"  class="form-control validate[required]" name="lesson_name" value="<?php if(!empty($lesson->lesson_name)) echo $lesson->lesson_name; ?>">
+					</div>
 				</div>
-				<table class="table table-bordered">
-					<tr>
-						<th width="10%">No</th>
-						<th>Lesson Name</th>
-						<th>Author</th>
-						<th>Action</th>
-					</tr>
-					<?php
-						if(!empty($subject)) {
-						foreach ($subject as $row ) {
-					?>
-					<tr>
-						<td><?php echo $row['subject_name'] ?></td>
-						<td>
-							<a href="<?php echo base_url() ?>index.php/faculty/" class="btn btn-primary">View</a>
-							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/faculty/delete_subject/<?php echo $user->user_no; ?>/<?php echo $row['subject_no'] ?>')"  class="btn btn-danger">Delete</a>
-						</td>
-					</tr>
-					<?php }}else{ ?>
-						<td colspan="4" class="text-center">No lessons in this subject</td>
-					<?php }?>
-				</table>
-			</div>
+				<div class="form-group">
+					<span class="col-md-1"></span>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-success btn-lg">Submit</button>
+					</div>
+				</div>
+			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 	</div>
 	</div>
