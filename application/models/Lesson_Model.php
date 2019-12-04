@@ -2,11 +2,24 @@
 
 	Class Lesson_Model extends CI_Model {
 
-        public function get_subject_lesson($subject_no){
+        public function get_lessons($subject_no){
             $this->db->select('*');
-            $this->db->from('subject');
-            $this->db->join('lesson','subject.subject_no = lesson.subject_no','left');
-            $this->db->where('subject.subject_no',$subject_no);
+            $this->db->from('lesson');
+            $this->db->where('subject_no',$subject_no);
+
+            $query = $this->db->get();
+
+            if($query->num_rows() > 0){
+                return $query->result_array();
+            }else{
+                return false;
+            }
+        }
+
+        public function get_lesson($lesson_no){
+            $this->db->select('*');
+            $this->db->from('lesson');
+            $this->db->where('lesson_no',$lesson_no);
 
             $query = $this->db->get();
 
@@ -15,6 +28,23 @@
             }else{
                 return false;
             }
+        }
+
+        public function create($data){
+            $this->db->insert('lesson',$data);
+            return $this->db->insert_id();
+        }
+
+        public function update($data,$lesson_no){
+            $this->db->where('lesson_no',$lesson_no);
+            $this->db->update('lesson',$data);
+            return $lesson_no;
+        }
+
+        public function delete($lesson_no){
+            $this->db->where('lesson_no',$lesson_no);
+            $this->db->delete('lesson');
+            return true;
         }
 	}
 
