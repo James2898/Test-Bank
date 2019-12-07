@@ -7,6 +7,9 @@
 <body>
 	<?php include APPPATH.'views/header.php' ?>
 	<div class="container" style="margin-top: 9%;">
+	<div>
+		<a style="margin: 5px 0;" href="<?php echo base_url() ?>index.php/subject" class="btn btn-primary">Back to Subjects</a>
+	</div>
 	<div class="panel panel-primary">
 	<div class="panel-heading text-center">
 		<h2>
@@ -16,7 +19,7 @@
 	<div class="panel-body">
 		<div class="tab-content">
 			<div id="faculty" class="tab-pane active">
-				<div class>
+				<div>
 					<a style="margin: 5px 0;" href="<?php echo base_url() ?>index.php/lesson/detail/<?php echo $subject->subject_no ?>" class="btn btn-success">Add Lesson</a>
 				</div>
 				<table class="table table-bordered">
