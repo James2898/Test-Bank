@@ -27,7 +27,7 @@ class Subject extends CI_Controller {
     }
 
     public function detail($subject_no = ''){
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }

@@ -16,9 +16,11 @@
 	<div class="panel-body">
 		<div class="tab-content">
 			<div id="faculty" class="tab-pane active">
-				<div class>
+				<?php if($_SESSION['authorization'] == '1'): ?>
+				<div>
 					<a style="margin: 5px 0;" href="<?php echo base_url() ?>index.php/subject/detail/" class="btn btn-success">Add Subject</a>
 				</div>
+				<?php endif ?>
 				<table class="table table-bordered">
 					<tr>
 						<th>Name</th>
@@ -31,8 +33,10 @@
                         <td><?php echo $row['subject_name'] ?></td>
 						<td>
 							<a href="<?php echo base_url() ?>index.php/lesson/index/<?php echo $row['subject_no'] ?>" class="btn btn-primary">View</a>
+							<?php if($_SESSION['authorization'] == '1'): ?>
 							<a href="<?php echo base_url() ?>index.php/subject/detail/<?php echo $row['subject_no']?>" class="btn btn-warning">Edit</a>
 							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/subject/delete/<?php echo $row['subject_no']?>')"  class="btn btn-danger">Delete</a>
+							<?php endif; ?>
 						</td>
 					</tr>
 					<?php }}else{ ?>
