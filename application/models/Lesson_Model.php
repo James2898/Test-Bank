@@ -3,9 +3,14 @@
 	Class Lesson_Model extends CI_Model {
 
         public function get_lessons($subject_no){
+            $where = "subject_no = '{$subject_no}' AND user_no = '{$_SESSION['user_no']}'";
             $this->db->select('*');
             $this->db->from('lesson');
-            $this->db->where('subject_no',$subject_no);
+            if($_SESSION['authorization'] == 1){
+                $this->db->where('subject_no',$subject_no);
+            }else{
+                $this->db->where($where);
+            }
 
             $query = $this->db->get();
 
