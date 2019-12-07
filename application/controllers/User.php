@@ -15,7 +15,7 @@ class User extends CI_Controller {
 
 	public function index($user_no = ''){
 
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization'])  || ($_SESSION['authorization'] != '1' && $user_no != $_SESSION['user_no'])){
             redirect(base_url().'index.php','refresh');
             exit();
         }

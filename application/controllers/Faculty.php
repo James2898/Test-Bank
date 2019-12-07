@@ -16,7 +16,7 @@ class Faculty extends CI_Controller {
 
 	public function index(){
 
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }
@@ -29,7 +29,7 @@ class Faculty extends CI_Controller {
 
     public function detail($user_no){
 
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }
@@ -43,7 +43,7 @@ class Faculty extends CI_Controller {
     }
 
     public function faculty_subject($user_no){
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }
@@ -61,7 +61,7 @@ class Faculty extends CI_Controller {
     }
 
     public function add_subject($user_no){
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }
@@ -75,7 +75,7 @@ class Faculty extends CI_Controller {
     }
 
     public function delete_subject($user_no = '',$subject_no = ''){
-        if(!isset($_SESSION['authorization'])){
+        if(!isset($_SESSION['authorization']) || $_SESSION['authorization'] != '1'){
             redirect(base_url().'index.php','refresh');
             exit();
         }
