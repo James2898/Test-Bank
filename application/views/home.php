@@ -53,7 +53,7 @@
 					<tr>
 						<td><?php echo $row['subject_name'] ?></td>
 						<td>
-							<a href="<?php echo base_url() ?>index.php/faculty/" class="btn btn-primary">View</a>
+							<a href="<?php echo base_url() ?>index.php/lesson/index/<?php echo $row['subject_no'] ?>" class="btn btn-primary">View</a>
 						</td>
 					</tr>
 					<?php }}else{ ?>
