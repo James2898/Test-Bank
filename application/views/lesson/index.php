@@ -32,7 +32,7 @@
 					<tr>
                         <td><?php echo $row['lesson_name'] ?></td>
 						<td>
-							<a href="<?php echo base_url() ?>index.php/question/index/<?php echo $subject->subject_no."/".$row['lesson_no'] ?>" class="btn btn-primary">View</a>
+							<a href="<?php echo base_url() ?>index.php/question/index/<?php echo $row['lesson_no'] ?>/identification" class="btn btn-primary">View</a>
 							<a href="<?php echo base_url() ?>index.php/lesson/detail/<?php echo $subject->subject_no."/".$row['lesson_no'] ?>" class="btn btn-warning">Edit</a>
 							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/lesson/delete/<?php echo $subject->subject_no.'/'.$row['lesson_no'] ?>')"  class="btn btn-danger">Delete</a>
 						</td>
