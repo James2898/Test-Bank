@@ -47,6 +47,7 @@
 				</div>
 				<table class="table table-bordered">
 					<tr>
+						<th>Subject Code</th>
 						<th>Subject Name</th>
 						<th>Action</th>
 					</tr>
@@ -55,6 +56,7 @@
 						foreach ($subject as $row ) {
 					?>
 					<tr>
+						<td><?php echo $row['subject_code'] ?></td>
 						<td><?php echo $row['subject_name'] ?></td>
 						<td>
 							<a href="<?php echo base_url() ?>index.php/faculty/" class="btn btn-primary">View</a>
