@@ -28,6 +28,11 @@ class User extends CI_Controller {
 
     public function save(){
         $user_no = $this->input->post('user_no') + 0;
+        $is_username_exists = $this->User_Model->check_username($this->input->post('username'));
+        if($is_username_exists){
+            $_SESSION['result'] = 'Error: Username Exists';
+            redirect(base_url().'index.php/user/index/'.$user_no);
+        }
         $data = array(
             'first_name'        =>  $this->input->post('first_name'),
             'last_name'         =>  $this->input->post('last_name'),
