@@ -62,6 +62,19 @@
             }
         }
 
+        public function is_user_full(){
+            $this->db->select('*');
+            $this->db->from('user');
+
+            $query = $this->db->get();
+
+            if($query->num_rows() == 40){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
 	}
 
 ?>
