@@ -28,6 +28,11 @@ class User extends CI_Controller {
 
     public function save(){
         $user_no = $this->input->post('user_no') + 0;
+        $is_user_full       = $this->User_Model->is_user_full();
+        if($is_user_full){
+            $_SESSION['result'] = 'Error: User List Full';
+            redirect(base_url().'index.php/user/index/'.$user_no);
+        }
         $is_username_exists = $this->User_Model->check_username($this->input->post('username'));
         if($is_username_exists){
             $_SESSION['result'] = 'Error: Username Exists';
