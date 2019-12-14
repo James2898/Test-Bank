@@ -16,7 +16,6 @@
         <li><a href="<?php echo base_url() ?>index.php/faculty">Faculty</a></li>
         <?php endif ?>
         <li><a href="<?php echo base_url() ?>index.php/subject">Subject</a></li>
-        <li><a href="<?php echo base_url() ?>index.php/test">Test</a></li>
       </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	      	<li><a href="<?php echo base_url() ?>index.php/Login/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
