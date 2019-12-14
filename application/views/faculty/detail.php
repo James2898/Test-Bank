@@ -59,7 +59,7 @@
 						<td><?php echo $row['subject_code'] ?></td>
 						<td><?php echo $row['subject_name'] ?></td>
 						<td>
-							<a href="<?php echo base_url() ?>index.php/faculty/" class="btn btn-primary">View</a>
+							<a href="<?php echo base_url() ?>index.php/lesson/index/<?php echo $row['subject_no'] ?>" class="btn btn-primary">View</a>
 							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/faculty/delete_subject/<?php echo $user->user_no; ?>/<?php echo $row['subject_no'] ?>')"  class="btn btn-danger">Delete</a>
 						</td>
 					</tr>
