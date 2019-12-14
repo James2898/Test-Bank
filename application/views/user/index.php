@@ -68,7 +68,7 @@
 					</div>
 					<div class="col-md-4">
 					Authorization
-						<select id="idAuthorization" name="authorization" class="form-control">
+						<select id="idAuthorization" name="authorization" class="form-control" <?php if($_SESSION['authorization'] != '1'){ echo 'disabled'; } ?>>
 							<option value="1" <?php if(!empty($user) && $user->authorization == 1) echo "selected" ?>>Admin</option>
 							<option value="2" <?php if(!empty($user) && $user->authorization == 2) echo "selected" ?>>Faculty</option>
 						</select>
