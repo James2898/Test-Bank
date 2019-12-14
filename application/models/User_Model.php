@@ -46,7 +46,21 @@
 			}else{
 				return false;
 			}
-		}
+        }
+
+        public function check_username($username){
+            $this->db->select('*');
+            $this->db->from('user');
+            $this->db->where('username',$username);
+
+            $query = $this->db->get();
+
+            if($query->num_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 	}
 
