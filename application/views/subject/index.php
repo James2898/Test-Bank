@@ -23,13 +23,15 @@
 				<?php endif ?>
 				<table class="table table-bordered">
 					<tr>
-						<th>Name</th>
+						<th>Subject Code</th>
+						<th>Subject Name</th>
 						<th>Action</th>
 					</tr>
 					<?php
 						if(!empty($subjects)) {
 						foreach ($subjects as $row ) { ?>
 					<tr>
+						<td><?php echo $row['subject_code'] ?></td>
                         <td><?php echo $row['subject_name'] ?></td>
 						<td>
 							<a href="<?php echo base_url() ?>index.php/lesson/index/<?php echo $row['subject_no'] ?>" class="btn btn-primary">View</a>

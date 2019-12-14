@@ -28,6 +28,10 @@
 				<div class="form-group">
 					<span class="col-md-1"></span>
 					<div class="col-md-4">
+						Subject Code
+						<input id="idSubjectCode" type="text"  class="form-control validate[required]" name="subject_code" value="<?php if(!empty($subject->subject_code)) echo $subject->subject_code; ?>">
+					</div>
+					<div class="col-md-4">
 						Subject Name
 						<input id="idSubjectName" type="text"  class="form-control validate[required]" name="subject_name" value="<?php if(!empty($subject->subject_name)) echo $subject->subject_name; ?>">
 					</div>

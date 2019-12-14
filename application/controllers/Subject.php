@@ -41,7 +41,8 @@ class Subject extends CI_Controller {
      public function save(){
         $subject_no = $this->input->post('subject_no') + 0;
         $data = array(
-            'subject_name'      =>  $this->input->post('subject_name'),
+            'subject_code'      =>  $this->input->post('subject_code'),
+            'subject_name'      =>  $this->input->post('subject_name')
         );
         if($subject_no > 0){
             $result = $this->Subject_Model->update($data,$subject_no);
