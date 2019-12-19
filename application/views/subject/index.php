@@ -23,9 +23,9 @@
 				<?php endif ?>
 				<table class="table table-bordered">
 					<tr>
-						<th>Subject Code</th>
+						<th width="20%">Subject Code</th>
 						<th>Subject Name</th>
-						<th>Action</th>
+						<th width="30%">Action</th>
 					</tr>
 					<?php
 						if(!empty($subjects)) {
@@ -39,6 +39,7 @@
 							<a href="<?php echo base_url() ?>index.php/subject/detail/<?php echo $row['subject_no']?>" class="btn btn-warning">Edit</a>
 							<a onclick="confirmDelete('<?php echo base_url() ?>index.php/subject/delete/<?php echo $row['subject_no']?>')"  class="btn btn-danger">Delete</a>
 							<?php endif; ?>
+							<a href="<?php echo base_url() ?>index.php/test/index/<?php echo $row['subject_no'] ?>" class="btn btn-info">Generate Test</a>
 						</td>
 					</tr>
 					<?php }}else{ ?>
