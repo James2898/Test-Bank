@@ -142,6 +142,9 @@
 							<option <?php if($type == 'enumeration') echo 'selected' ?> value="enumeration">
 								Enumeration
 							</option>
+                            <option <?php if($type == 'multiple') echo 'selected' ?> value="multiple">
+								Multiple Choice
+							</option>
 							<option <?php if($type == 'trueorfalse') echo 'selected' ?> value="trueorfalse">
 								True or False</option>
 							<option <?php if($type == 'essay') echo 'selected' ?> value="essay">
