@@ -34,7 +34,7 @@ class User extends CI_Controller {
             redirect(base_url().'index.php/user/index/'.$user_no);
         }
         $is_username_exists = $this->User_Model->check_username($this->input->post('username'));
-        if($is_username_exists){
+        if($is_username_exists && $user_no == 0){
             $_SESSION['result'] = 'Error: Username Exists';
             redirect(base_url().'index.php/user/index/'.$user_no);
         }
@@ -44,7 +44,7 @@ class User extends CI_Controller {
             'username'	        =>	$this->input->post('username'),
             'authorization'     =>  $this->input->post('authorization') + 0,
         );
-        if( !empty($this->input->post('password')) && !empty($this->input->post('confirm_password')) ){
+        if( !empty($this->input->post('password')) && !empty($this->input->post('cpassword')) ){
             $data['password']   =  $this->input->post('password');
         }
         if($user_no > 0){
