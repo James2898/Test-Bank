@@ -80,6 +80,7 @@ foreach ($exam as $temp_key => $test) {
             $type = $q_value;
         }
     }
+    if($questions == NULL){ continue; }
     if($type == 'identification'){
         // print_r($questions);
         $item_no = 1;
@@ -132,16 +133,28 @@ foreach ($exam as $temp_key => $test) {
                             <td><p>'.$item_no++.'. '.$question.'</p>
                             <ol type="a">
                         ';
+                $answer = explode(",",$answer);
+                $key = $answer[0];
+                shuffle($answer);
+                foreach($answer as $value){
+                    if($value == $key){
+                        $html .= "<li><b>".$value."</b></li>";
+                    }else{
+                        $html .= "<li>".$value."</li>";
+                    }
+                }
+
+                $html .= "</ol></td></tr><tr><td></td></tr>";
+            }else{
+                $html .= '<tr>
+                            <td><p>'.$item_no++.'. '.$question.'</p>
+                            <ol type="a">
+                        ';
                 foreach(explode(",",$answer) as $value){
                     $html .= "<li>".$value."</li>";
                 }
 
                 $html .= "</ol></td></tr><tr><td></td></tr>";
-            }else{
-                $html .= '
-                    <tr>
-                        <td><p>'.$item_no++.'. '.$question.'</p></td>
-                    </tr>';
             }
         }
         $html .="</table>";
