@@ -53,6 +53,7 @@ $html = '
 </table>';
 // print_r($exam);
 $exam_no = 1;
+$answer_keys = array();
 foreach ($exam as $temp_key => $test) {
     list($key) = explode("_",$temp_key);
     if($key != 'exam'){
@@ -85,98 +86,62 @@ foreach ($exam as $temp_key => $test) {
         // print_r($questions);
         $item_no = 1;
         $html .= '<table cellspacing="3"><tr><td></td></tr>';
+        $temp_answer = array();
         foreach ($questions as $question => $answer){
-            if(isset($exam['answer'])){
-                $html .= '
-                    <tr>
-                        <td width="25%"><p>'.$answer.'</p></td>
-                        <td width="70%">'.$item_no++.'. '.$question.'</td>
-                    </tr>
-                ';
-            }else{
-                $html .= '
-                    <tr>
-                        <td>____________________ '.$item_no++.'. '.$question.'</td>
-                    </tr>
-                ';
-            }
+            array_push($temp_answer,$answer);
+            $html .= '
+                <tr>
+                    <td>____________________ '.$item_no++.'. '.$question.'</td>
+                </tr>
+            ';
         }
+        array_push($answer_keys, $temp_answer);
         $html .= "</table>";
     }else if($type == 'enumeration'){
         $item_no = 1;
         $html .= '<table><tr><td></td></tr>';
+        $temp_answer = array();
         foreach ($questions as $question => $answer) {
-            if(isset($exam['answer'])){
-                $html .= "<tr>
-                            <td><p>".$item_no++.". ".$question."</p>
-                            <ol>
-                        ";
-                foreach(explode(",",$answer) as $value){
-                    $html .= "<li>".$value."</li>";
-                }
-
-                $html .= "</ol></td></tr><tr><td></td></tr>";
-            }else{
-                $html .= '
-                    <tr>
-                        <td><p>'.$item_no++.'. '.$question.'</p></td>
-                    </tr>';
-            }
+            $temp_answer = $answer;
+            $html .= '
+                <tr>
+                    <td><p>'.$item_no++.'. '.$question.'</p></td>
+                </tr>';
         }
+        array_push($answer_keys, $temp_answer);
         $html .="</table>";
     }elseif ($type == 'multiple'){
         $item_no = 1;
         $html .= '<table><tr><td></td></tr>';
+        $temp_answer = array();
         foreach ($questions as $question => $answer) {
-            if(isset($exam['answer'])){
-                $html .= '<tr>
-                            <td><p>'.$item_no++.'. '.$question.'</p>
-                            <ol type="a">
-                        ';
-                $answer = explode(",",$answer);
-                $key = $answer[0];
-                shuffle($answer);
-                foreach($answer as $value){
-                    if($value == $key){
-                        $html .= "<li><b>".$value."</b></li>";
-                    }else{
-                        $html .= "<li>".$value."</li>";
-                    }
-                }
-
-                $html .= "</ol></td></tr><tr><td></td></tr>";
-            }else{
-                $html .= '<tr>
-                            <td><p>'.$item_no++.'. '.$question.'</p>
-                            <ol type="a">
-                        ';
-                foreach(explode(",",$answer) as $value){
-                    $html .= "<li>".$value."</li>";
-                }
-
-                $html .= "</ol></td></tr><tr><td></td></tr>";
+            $html .= '<tr>
+                        <td><p>'.$item_no++.'. '.$question.'</p>
+                        <ol type="a">
+                    ';
+            $answer = explode(",",$answer);
+            array_push($temp_answer,$answer[0]);
+            foreach($answer as $value){
+                $html .= "<li>".$value."</li>";
             }
+
+            $html .= "</ol></td></tr><tr><td></td></tr>";
         }
+        array_push($answer_keys, $temp_answer);
         $html .="</table>";
     }elseif ($type == 'trueorfalse') {
         $item_no = 1;
         $html .= '<table cellspacing="3"><tr><td></td></tr>';
+        $temp_answer = array();
         foreach ($questions as $question => $answer){
-            if(isset($exam['answer'])){
-                $html .= '
-                    <tr>
-                        <td width="10%"><p>'.$answer.'</p></td>
-                        <td width="85%">'.$item_no++.'. '.$question.'</td>
-                    </tr>
-                ';
-            }else{
-                $html .= '
-                    <tr>
-                        <td>____________________ '.$item_no++.'. '.$question.'</td>
-                    </tr>
-                ';
-            }
+            array_push($temp_answer, $answer);
+            $html .= '
+                <tr>
+                    <td>____________________ '.$item_no++.'. '.$question.'</td>
+                </tr>
+            ';
         }
+        array_push($answer_keys, $temp_answer);
         $html .= "</table>";
     }else if($type == 'essay'){
         $item_no = 1;
@@ -196,6 +161,7 @@ foreach ($exam as $temp_key => $test) {
                 ';
             }
         }
+        array_push($answer_keys,array());
         $html .= "</table>";
     }
 }
@@ -203,6 +169,55 @@ foreach ($exam as $temp_key => $test) {
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');
+
+
+if(isset($exam['answer'])){
+    $pdf->AddPage();
+    $html = '
+    <table border="1" cellpadding="2">
+        <tr>
+            <td rowspan="2"><img src="'.base_url().'/assets/img/brand.png"/></td>
+            <td rowspan="2" style="text-align:center">
+                <b>'.$exam['term'].' Examination<br>
+                '.$exam['trimester'].'<br>
+                SY '.$exam['syear'].' - '.$exam['eyear'].'</b>
+            </td>
+            <td><b>Course Code:</b> '.$subject->subject_code.' </td>
+            <td><b>No of Copies:</b> </td>
+        </tr>
+        <tr>
+            <td><b>Instructor:</b>'.$exam['instructor'].'</td>
+            <td><b>Proctor:</b></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Course Title:</b> '.$subject->subject_name.' (Answer Key)</td>
+            <td><b>Date:</b> </td>
+            <td><b>Room:</b> </td>
+        </tr>
+    </table>';
+    $ctr = 1;
+    foreach ($answer_keys as $answer){
+        $html .= "<table>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td><b>Test ".$ctr++."</b></td>
+                    </tr>
+                    <tr><td></td></tr>
+        ";
+        $itr = 1;
+        foreach ($answer as $item){
+            $html .= "<tr><td>".$itr++.". ".$item."</td></tr>";
+        }
+
+        $html .= "</table>";
+        // print_r($answer);
+    }
+
+    // output the HTML content
+    $pdf->writeHTML($html, true, false, true, false, '');
+}
+// add a page
+
 
 // reset pointer to the last page
 $pdf->lastPage();
