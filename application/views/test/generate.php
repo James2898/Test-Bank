@@ -120,10 +120,13 @@ foreach ($exam as $temp_key => $test) {
                         <ol type="a">
                     ';
             $answer = explode(",",$answer);
-            array_push($temp_answer,$answer[0]);
+            $key = $answer[0];
+            shuffle($answer);
             foreach($answer as $value){
                 $html .= "<li>".$value."</li>";
             }
+
+            array_push($temp_answer,$key.". ".chr(array_search($key,$arr) + 97));
 
             $html .= "</ol></td></tr><tr><td></td></tr>";
         }
