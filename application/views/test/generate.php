@@ -126,7 +126,7 @@ foreach ($exam as $temp_key => $test) {
                 $html .= "<li>".$value."</li>";
             }
 
-            array_push($temp_answer,$key.". ".chr(array_search($key,$arr) + 97));
+            array_push($temp_answer,chr(array_search($key,$answer) + 97).". ".$key);
 
             $html .= "</ol></td></tr><tr><td></td></tr>";
         }
