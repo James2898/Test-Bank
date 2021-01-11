@@ -19,7 +19,11 @@ class Subject extends CI_Controller {
             redirect(base_url().'index.php','refresh');
             exit();
         }
-        $subjects   = $this->Subject_Model->get_all_subjects();
+        if ($_SESSION['authorization'] == 1) {
+            $subjects   = $this->Subject_Model->get_all_subjects();
+        } else {
+            $subjects   = $this->Subject_Model->get_user_subjects($_SESSION['user_no']);            
+        }
         $data       = array(
             'subjects'   =>  $subjects
         );
